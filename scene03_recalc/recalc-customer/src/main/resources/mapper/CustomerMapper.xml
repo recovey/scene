@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.recalccustomer.mapper.CustomerMapper">
+
+
+    <select id="findFinInfo" parameterType="long" resultType="dto.CustomerFinDto">
+        select c.customer_id, weight_rate from tb_customer c
+            left join tb_customer_config cc on c.customer_id = cc.customer_id
+        where c.customer_id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+</mapper>

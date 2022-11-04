@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.scene01.pojo.Customer">
+
+    <!--&lt;!&ndash;<insert id="save" parameterType="Category">&ndash;&gt;-->
+    <!--&lt;!&ndash;    select * from category&ndash;&gt;-->
+    <!--&lt;!&ndash;</insert>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<update id="update" parameterType="Category">&ndash;&gt;-->
+    <!--&lt;!&ndash;    update category set name = #{name}, comment = #{comment}, modified_time = now()&ndash;&gt;-->
+    <!--&lt;!&ndash;    where id = #{id}&ndash;&gt;-->
+    <!--&lt;!&ndash;</update>&ndash;&gt;-->
+
+    <!--<update id="logicDelete" parameterType="int">-->
+    <!--    update category set state = 0-->
+    <!--    where cid = #{cid}-->
+    <!--</update>-->
+
+    <!--<delete id="clearMovieCategories" parameterType="int">-->
+    <!--    delete from movie_category where category_id = #{cid}-->
+    <!--</delete>-->
+
+    <!--<select id="queryPageBy" resultType="category" >-->
+    <!--    select * from category where name like #{keyword} or comment like #{keyword}-->
+    <!--    &lt;!&ndash;limit #{page.offset}, #{page.size}&ndash;&gt;-->
+    <!--</select>-->
+
+</mapper>

@@ -1,0 +1,62 @@
+# 应用名称
+spring:
+  application:
+    name: recalc-customer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    username: root
+    password: 123
+    #   注意这个时间坑，JDBC连接的时候与数据库时区保持一致，否则插入日期会差一天
+    url: jdbc:mysql://localhost:3333/Scene03_customer?useUnicode=ture&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    port:
+      6666
+# Nacos帮助文档: https://nacos.io/zh-cn/docs/concepts.html
+# Nacos认证信息
+#spring.cloud.nacos.discovery.username=nacos
+#spring.cloud.nacos.discovery.password=nacos
+# Nacos 服务发现与注册配置，其中子属性 server-addr 指定 Nacos 服务器主机和端口
+#spring.cloud.nacos.discovery.server-addr=mse-6d50f4f0-p.nacos-ans.mse.aliyuncs.com:8848
+# 注册到 nacos 的指定 namespace，默认为 public
+#spring.cloud.nacos.discovery.namespace=public
+# 应用服务 WEB 访问端口
+server:
+  port: 8080
+
+#feign:
+#  client:
+#    config:
+#      SapService:
+#        readTimeout: 95000
+#        connectTimeout: 95000
+
+feign:
+  hystrix:
+    enabled: false #是否开启熔断
+  client:
+    config:
+      default: #服务名
+        connect-timeout: 60000
+        read-timeout: 60000
+      serviceName: #单独配置指定的服务超时配置
+        connect-timeout: 60000
+        read-timeout: 60000
+mybatis-plus:
+  mapper-locations:
+    - classpath:/mapper/*.xml
+  global-config:
+    db-config:
+      id-type: AUTO
+  #  type-aliases-package: com.example.recalcsend.domain
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+#feign.client.default
+#ribbon:
+#  ConnectTimeout: 10000 # ribbon链接超时时长
+#  ReadTimeout: 10000 # ribbon读取超时时间长
+

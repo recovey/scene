@@ -1,0 +1,42 @@
+# 应用名称
+spring:
+  application:
+    name: recalc-send
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    username: root
+    password: 123
+    #   注意这个时间坑，JDBC连接的时候与数据库时区保持一致，否则插入日期会差一天
+    url: jdbc:mysql://localhost:3333/Scene03_send?useUnicode=ture&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    port: 6666
+mybatis-plus:
+  mapper-locations:
+    - classpath:/mapper/*.xml
+  global-config:
+    db-config:
+      id-type: AUTO
+#  type-aliases-package: com.example.recalcsend.domain
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+server:
+  port: 8090
+
+feign:
+  hystrix:
+    enabled: false #是否开启熔断
+  client:
+    config:
+      default: #服务名
+        connect-timeout: 600000
+        read-timeout: 600000
+      serviceName: #单独配置指定的服务超时配置
+        connect-timeout: 600000
+        read-timeout: 600000
+
+

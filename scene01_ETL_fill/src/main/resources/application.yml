@@ -1,0 +1,49 @@
+# 配置HikariCP（速度最快的一个连接池框架）
+spring:
+  application:
+    name: scene01
+
+  # 允许bean重写
+  main:
+    allow-bean-definition-overriding: true
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+#    # 实现了javax.sql.Datasource全类名（由于是springboot默认的数据源提供者，可以省略）
+
+# 配置在springboot提供的datasource命名空间下
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 设置为MySQL所在的服务器的IP地址
+    url: jdbc:mysql://localhost:3306/scene01?rewriteBatchedStatements=true&serverTimezone=GMT%2B8&characterEncoding=utf8
+    username: root
+    password: 123
+
+  redis:
+    port: 6666
+
+#mybatis-plus
+mybatis-plus:
+
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+
+  type-aliases-package: com.example.scene01.pojo
+
+  # mapper映射文件路径
+  mapper-locations:
+    # 可以配置多个路径(集合)
+    - classpath*:/mybatis/mapper/*.xml
+
+  # mybatis自身的配置信息
+#  config-location: classpath:/mybatis/mybatis-config.xml
+#  configuration-properties:
+#    map-underscore-to-camelCase: true
+#    log-impl: STDOUT_LOGGING
+
+#logging:
+#  config: classpath:log4j2.xml
+#  level:
+#    org.apache.ibatis: DEBUG
+
+
